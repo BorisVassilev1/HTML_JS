@@ -14,12 +14,10 @@ class Player{
     constructor(posX, posY, id) {
         this.X = posX;
         this.Y = posY;
-        //this.dirX = 0;
-        //this.dirY = 0;
         this.ID = id;
         this.isMoving = true;
-        this.destX = this.X;
-        this.destY = this.y;
+        this.destX = posX;
+        this.destY = posY;
     }
     setPos(newX, newY) {
         this.X = newX;
@@ -28,6 +26,13 @@ class Player{
     setDir(newX, newY) {
         this.dirX = newX;
         this.dirY = newY;
+    }
+    
+    setDest(newX, newY)
+    {
+        setDir(newX- this.X, newY - this.Y);
+        this.destX = newX;
+        this.destY = newY;
     }
     
 }
@@ -45,10 +50,12 @@ io.sockets.on('connection',(socket) =>{
     }
     //var ID = socket.id;
     var newPlayer = new Player(0,0,ID);
+    //newPlayer.destY = 0;
     players[ID] = newPlayer;
     var data = {players, ID};
     socket.emit('init', data);
-    socket.broadcast.emit('new player',{ID, newPlayer})
+    socket.broadcast.emit('new player',{ID, newPlayer});
+    console.log(newPlayer);
     
     socket.on('move', (data) => {
         //console.log(data);
