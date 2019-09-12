@@ -1,27 +1,32 @@
 class Particle {
     constructor(x,y) {
         this.pos = new Vector2(x,y);
-        this.vel = new Vector2(0,0);
+        this.vel = new Vector2(Math.random() * 4 -2 , Math.random() * 4 - 2);
         this.acc = new Vector2(0,0);
-        this.mass = 1;
+        this.mass = Math.random() *  2;
+        //this.mass *= this.mass * 10;
+        //this.prevPos = new Vector2(0,0);
     }
     
     draw() {
         ctx.beginPath();
-        ctx.arc(this.pos.x,this.pos.y,1,0,2 * Math.PI);
+        ctx.arc(this.pos.x,this.pos.y,3,0,2 * Math.PI);
         ctx.closePath();
-        ctx.stroke()
+        //ctx.stroke();
+        ctx.fillStyle = "rgb(255," + this.mass * 255 + ",255)"
+        ctx.fill();
     }
     
     update() {
         this.vel.add(this.acc);
         this.acc.set(0,0);
-        this.pos.add(this.vel);
+        //this.prevPos.set(this.pos);
+        this.pos.add(this.vel.mul(1.0));
     }
 }
 
 let particles = [];
-for(let i = 0; i < 2000; i ++) {
+for(let i = 0; i < 1000; i ++) {
     particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
 }
 
@@ -35,7 +40,7 @@ function update() {
                 
                 let direction = new Vector2(p1.pos.x - p2.pos.x, p1.pos.y - p2.pos.y)
                 let distance = direction.length();
-                direction.mul(-1 / distance / distance * 1);
+                direction.mul(-1 / distance / distance * 0.10 * p1.mass * p2.mass);
                 p1.acc.add(direction);
             }
         }

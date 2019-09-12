@@ -4,10 +4,6 @@ class Vector2 {
         this.x = x;
         this.y = y;
     }
-    set(x,y) {
-        this.x = x;
-        this.y = y;
-    }
     add(a) {
         this.x += a.x;
         this.y += a.y;

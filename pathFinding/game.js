@@ -1,6 +1,7 @@
 let vertices = [];
 let graph = [];
 
+let target = new Vector2(800,600);
 
 let walls = [
     new Line(new Vector2(300,100), new Vector2(300,300)),
@@ -14,8 +15,10 @@ function update() {
 }
 
 function calculate() {
+    vertices = [];
+    graph =[];
     vertices.push(new Vector2(0,0));
-    vertices.push(new Vector2(800,600));
+    vertices.push(target);
     for(let i = 0; i < walls.length; i ++) {
         let v1 = walls[i].v1.clone().sub(walls[i].vector);
         let v2 = walls[i].v2.clone().add(walls[i].vector);
@@ -60,23 +63,26 @@ function draw() {
     for(const l of walls) {
         l.draw();
     }
+    ctx.stroke();
     
 //    ctx.fillStyle = "#ebff00";
 //    for(const v of vertices) {
 //        ctx.fillRect(v.x-2,v.y-2,4,4);
 //    }
     ctx.strokeStyle = "#00FF00";
+//    ctx.beginPath();
 //    for(let i = 0; i < vertices.length; i ++) {
 //        for(let j = 0; j < graph[i].length; j ++) {
 //            let v1 = vertices[i];
 //            let v2 = vertices[graph[i][j].to];
-//            if((i == 7 && j == 6) || (i == 6 && j == 7))  console.log("asfghjk")
 //            ctx.moveTo(v1.x, v1.y);
 //            ctx.lineTo(v2.x, v2.y);
 //            ctx.stroke();
 //        }
 //    }
     let path = dijxtra(graph,0,1);
+    //console.log(path);
+    ctx.beginPath();
     ctx.moveTo(vertices[1].x, vertices[1].y);
     for(let i = 0; i < path.length; i ++) {
         ctx.lineTo(vertices[path[i]].x, vertices[path[i]].y);
@@ -86,10 +92,14 @@ function draw() {
     window.requestAnimationFrame(draw);
 }
 
+function mouseUp(ev) {
+    target.set(ev.x, ev.y);
+    calculate();
+}
 
-//window.requestAnimationFrame(draw);
+window.requestAnimationFrame(draw);
 
 calculate()
 draw();
-setInterval(update, 10);
+//setInterval(update, 10);
 

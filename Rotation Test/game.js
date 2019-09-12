@@ -1,14 +1,22 @@
 var pivx = 400;
 var pivy = 300;
-var x = 400;
-var y = 200;
+var x;
+var y;
 var rot = 0.01;
-var newx = 0,newy = 0;
+var newx ,newy ;
+//context.fillRect(0,0,32,234);       
+
 function update() {
-    
+    //context.fillStyle = "rgba(255, 255, 255, 1.1)";
+   
+    context.moveTo(x,y);
     x = mouseX;
     y = mouseY;
+    context.lineTo(x,y);
+    context.stroke();
+    context.closePath();    
     
+    context.moveTo(newx,newy);
     var relx = x - pivx;
     var rely = y - pivy;
     newx = Math.sin(rot + Math.atan(relx/rely)) * Math.sqrt((relx) * (relx) + (rely) * (rely)) + pivx;
@@ -23,13 +31,18 @@ function update() {
             rot +=0.01;
             console.log("pressed");
         }
+    context.lineTo(newx,newy);
+    context.stroke();
 }
 
 function draw() {
-    context.fillRect(x,y,4,4);
-    context.fillStyle = "red"
-    context.fillRect(newx,newy,4,4);
-    context.fillStyle = "blue"
-    context.fillRect(pivx,pivy,5,5)
+    
+    context.fillStyle = "rgba(255, 0, 0, 0.01)";
+     context.fillRect(0,0,800,600);
+    //context.fillRect(x,y,4,4);
+    //context.fillStyle = "red"
+    //context.fillRect(newx,newy,4,4);
+    //context.fillStyle = "blue"
+    //context.fillRect(pivx,pivy,5,5)
 }
 

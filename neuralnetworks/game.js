@@ -134,6 +134,7 @@ for(let i = 0; i < NETWORKS_PER_GENERATION; i ++)
 {
     neuralNetworks[i] = new NeuralNetwork(3,[2,3,1]);
 }
+sortByFitness();
 let xoffset = 60;
 let yoffset = 60;
 
@@ -176,20 +177,22 @@ function train()
 function update() {
     
 }
+//train();
 function draw() {
     context.scale(2,2)
-    context.strokeWidth = 10;
+    context.strokeWidth = 100;
     context.translate(20,20);
     let nn = neuralNetworks[0];
     for(let layer = 0; layer < nn.layersCount; layer ++) {
         for(let neuronID = 0; neuronID < nn.layerSizes[layer]; neuronID ++) {
             context.fillRect(layer * xoffset - 5, neuronID * yoffset - 5, 10,10);
-            context.globalAlpha = 0.1;
+            //context.globalAlpha = 0.1;
             for(let synapsID = 0; synapsID < nn.neurons[layer][neuronID].synapses.length; synapsID ++)
             {
                 let synaps = nn.neurons[layer][neuronID].synapses[synapsID];
-                context.strokeStyle = "rgb(" + synaps.W * 255 + ",0,0)";
+                context.strokeStyle = "rgb(" + synaps.W * 255 + "," + synaps.W * 255 + "," + synaps.W * 255 + ")";
                 //console.log(synaps);
+                context.beginPath();
                 context.moveTo(layer * xoffset,neuronID * yoffset);
                 context.lineTo((layer + 1) * xoffset, synaps.to * yoffset);
                 context.stroke();

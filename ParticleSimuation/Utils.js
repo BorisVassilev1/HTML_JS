@@ -10,6 +10,7 @@ const ctx = canvas.getContext('2d');
 document.body.style.backgroundColor = "black";
 ctx.fillStyle = "#FF0000";
 ctx.strokeStyle = "#FF0000";
+//ctx.globalAlpha = 0.1;
 let isKeyPressed = {};
 
 window.addEventListener('keydown', ev => isKeyPressed[ev.code] = true);

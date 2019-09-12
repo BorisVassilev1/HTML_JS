@@ -38,8 +38,9 @@ var reqAnimationFrame =
 	}
 
 function redraw() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.globalAlpha = 1;
+    
+    context.globalAlpha = 1.0;
+    //context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// draw grid
 	context.fillStyle = "#FF0000";
@@ -118,7 +119,7 @@ function init() {
 	// check for function draw() existence
 	if(typeof draw == "undefined")
 		redraw = function() {
-			context.clearRect(0, 0, canvas.width, canvas.height);
+			//context.clearRect(0, 0, canvas.width, canvas.height);
 			context.globalAlpha = 1;
 			context.fillStyle = "#FF0000";
 			context.font = "30px Arial";
