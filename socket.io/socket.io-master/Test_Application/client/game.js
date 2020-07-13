@@ -5,7 +5,7 @@ var speed = 2;
 var players = [];
 
 function setup() {
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('http://skalasoft.com:25565');
     socket.on('init', (data) => {
         console.log(data);
         players = data.players;

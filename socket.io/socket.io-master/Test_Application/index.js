@@ -1,13 +1,13 @@
 // Setup basic express server
 var express = require('express');
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(25565);
 var socket = require('socket.io');
 var io = socket(server);
 
 app.use(express.static('client'));
 
-console.log("Server listening at port 3000");
+console.log("Server listening at port 25565");
 
 var players = [];
 
@@ -24,7 +24,8 @@ class Player{
 }
 
 io.sockets.on('connection',(socket) =>{
-    console.log("new connection: " + socket.id);
+    var address = socket.request.connection.remoteAddress;
+    console.log("new connection: " + socket.id + " ip: " + address);
     var ID = 0;
     while(true)
     {
