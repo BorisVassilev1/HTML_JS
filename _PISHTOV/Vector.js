@@ -97,7 +97,7 @@ class Vector3 {
     }
 }
 
-function orientedFace(a,b,c) {
+function singedArea(a,b,c) {
     return a.x*b.y + a.y*c.x + b.x*c.y - b.y*c.x - a.x*c.y - a.y*b.x;
 } 
 

@@ -5,7 +5,7 @@ var speed = 2;
 var players = [];
 
 function setup() {
-    socket = io.connect('http://skalasoft.com:25565');
+    socket = io.connect('http://localhost:25565');
     socket.on('init', (data) => {
         console.log(data);
         players = data.players;
@@ -54,12 +54,12 @@ function draw() {
         {
             if(i == ID)
             {
-                context.fillStyle = "FF0000";
+                context.fillStyle = "#FF0000";
                 context.fillRect(players[i].X, players[i].Y, 30, 30);
             }
             else
             {
-                context.fillStyle = "0000FF";
+                context.fillStyle = "#0000FF";
                 context.fillRect(players[i].X, players[i].Y, 30, 30);
             }
         }

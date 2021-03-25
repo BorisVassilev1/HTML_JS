@@ -1,6 +1,5 @@
 const canvas = document.getElementById('canvas-id');
 
-
 const ctx = canvas.getContext('2d');
 const refitCanvas = () => {
     canvas.width = window.innerWidth - 10;
@@ -15,7 +14,7 @@ window.addEventListener('resize', refitCanvas);
 document.body.style.backgroundColor = "white";
 ctx.fillStyle = "#FF0000";
 ctx.strokeStyle = "#FF0000";
-let isKeyPressed = {};
+let isKeyPressed = [];
 let mouseX = 0;
 let mouseY = 0;
 

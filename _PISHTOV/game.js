@@ -7,9 +7,11 @@ function update() {
 }
 
 function draw() {
-    ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width , canvas.height   );
+    ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width , canvas.height);
     
     ctx.fillRect(myX,myY, 30, 30);
+    
+    ctx.fillRect(0, 0, 10, 10);
     
     window.requestAnimationFrame(draw);
 }
