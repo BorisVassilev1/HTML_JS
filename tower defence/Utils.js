@@ -17,9 +17,14 @@ ctx.strokeStyle = "#FF0000";
 let isKeyPressed = [];
 let mouseX = 0;
 let mouseY = 0;
+let mouse = new Vector2(mouseX, mouseY);
 
 window.addEventListener('keydown', ev => {keyDown(ev.keyCode); isKeyPressed[ev.keyCode] = true});
 window.addEventListener('keyup', ev => {keyUp(ev.keyCode); isKeyPressed[ev.keyCode] = false});
 window.addEventListener('mousedown', ev => mouseDown());
 window.addEventListener('mouseup', ev => mouseUp());
-window.addEventListener('mousemove', ev => {mouseX = ev.x - canvas.width / 2; mouseY = ev.y - canvas.height / 2;});
+window.addEventListener('mousemove', ev => {
+    mouseX = ev.x - canvas.width / 2;
+    mouseY = ev.y - canvas.height / 2;
+    mouse.set(mouseX, mouseY);
+});

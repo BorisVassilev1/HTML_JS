@@ -18,6 +18,19 @@ let isKeyPressed = [];
 let mouseX = 0;
 let mouseY = 0;
 
+function areColliding(Ax, Ay, Awidth, Aheight, Bx, By, Bwidth, Bheight) {
+    if (Bx <= Ax + Awidth) {
+        if (Ax <= Bx + Bwidth) {
+            if (By <= Ay + Aheight) {
+                if (Ay <= By + Bheight) {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+};
+
 window.addEventListener('keydown', ev => {keyDown(ev.keyCode); isKeyPressed[ev.keyCode] = true});
 window.addEventListener('keyup', ev => {keyUp(ev.keyCode); isKeyPressed[ev.keyCode] = false});
 window.addEventListener('mousedown', ev => mouseDown());

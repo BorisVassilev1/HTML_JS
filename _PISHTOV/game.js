@@ -11,11 +11,27 @@ function draw() {
     
     ctx.fillRect(myX,myY, 30, 30);
     
-    ctx.fillRect(0, 0, 10, 10);
+    ctx.fillRect(-5, -5, 5, 5);
     
     window.requestAnimationFrame(draw);
 }
 
+
+function keyUp(key) {
+    console.log("Key pressed: " + key);
+}
+
+function keyDown(key) {
+    console.log("Key pressed: " + key);
+}
+
+function mouseDown() {
+    console.log("Mouse pressed at: " + mouseX + " " + mouseY);
+}
+
+function mouseUp() {
+    console.log("Mouse released at: " + mouseX + " " + mouseY);
+}
 
 window.requestAnimationFrame(draw);
 
