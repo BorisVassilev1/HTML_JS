@@ -69,7 +69,7 @@ function draw() {
 //    for(const v of vertices) {
 //        ctx.fillRect(v.x-2,v.y-2,4,4);
 //    }
-    ctx.strokeStyle = "#00FF00";
+//    ctx.strokeStyle = "#00FF00";
 //    ctx.beginPath();
 //    for(let i = 0; i < vertices.length; i ++) {
 //        for(let j = 0; j < graph[i].length; j ++) {

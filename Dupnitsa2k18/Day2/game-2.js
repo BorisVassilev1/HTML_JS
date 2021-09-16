@@ -180,101 +180,104 @@ function draw()
         {
             drawCubicCurve(road[i],road[i+1],road[i+2],road[i+3])
         }
-        context.stroke()
-    }
-    else
-    {
-        context.beginPath()
-        context.moveTo(curvePoints[0].x,curvePoints[0].y)
-        for(let i = 0; i < curvePoints.length; i ++)
-        {
-            context.lineTo(curvePoints[i].x,curvePoints[i].y)
-        }
-        context.lineTo(curvePoints[0].x,curvePoints[0].y)
-        context.strokeStyle = "yellow"
-        context.lineWidth = 20
-        context.stroke()
-        
-    }
-    
-    
-    context.fillStyle = "red"
-    context.lineWidth = 1
-    road.forEach((p) => p.draw(5))
-    G.draw()
-    
-    context.beginPath()
-    context.lineWidth = 1
-    for(let i = 0; i < road.length; i ++)
-    {
-        if(i % 3 == 0)
-        {
-            if(i <= road.length - 2)
-            {
-                context.moveTo(road[i].x,road[i].y)
-                context.lineTo(road[i + 1].x, road[i + 1].y)
-            }
-            if(i >= 1)
-            {
-                context.moveTo(road[i - 1].x, road[i - 1].y)
-                context.lineTo(road[i].x, road[i].y)
-            }
-        }
-    }
-    context.strokeStyle = "blue"
-    context.stroke()
+		context.stroke()
+		context.fillStyle = "red"
+		context.lineWidth = 1
+		road.forEach((p) => p.draw(5))
+		G.draw()
+
+		context.beginPath()
+		context.lineWidth = 1
+		for(let i = 0; i < road.length; i ++)
+		{
+			if(i % 3 == 0)
+			{
+				if(i <= road.length - 2)
+				{
+					context.moveTo(road[i].x,road[i].y)
+					context.lineTo(road[i + 1].x, road[i + 1].y)
+				}
+				if(i >= 1)
+				{
+					context.moveTo(road[i - 1].x, road[i - 1].y)
+					context.lineTo(road[i].x, road[i].y)
+				}
+			}
+		}
+		context.strokeStyle = "blue"
+		context.stroke()
+	}
+	else
+	{
+		context.beginPath()
+		context.moveTo(curvePoints[0].x,curvePoints[0].y)
+		for(let i = 0; i < curvePoints.length; i ++)
+		{
+			context.lineTo(curvePoints[i].x,curvePoints[i].y)
+		}
+		context.lineTo(curvePoints[0].x,curvePoints[0].y)
+		context.strokeStyle = "yellow"
+		context.lineWidth = 20
+		context.stroke()
+
+	}
+	
+	context.stroke()
+	context.fillStyle = "red"
+	context.lineWidth = 1
+	G.draw()
 }
 
 let current = 0
 function keydown()
 {
-    for(let i = 0; i < road.length; i ++)
-    {
-        if((road[i].x - mouseX) * (road[i].x - mouseX) + (road[i].y - mouseY) * (road[i].y - mouseY) <= 400)
-        {
-            current = i
-        }
-    }   
+	for(let i = 0; i < road.length; i ++)
+	{
+		if((road[i].x - mouseX) * (road[i].x - mouseX) + (road[i].y - mouseY) * (road[i].y - mouseY) <= 400)
+		{
+			current = i
+		}
+	}   
 }
 
 function keyup(key)
 {
-    current = -1
-    
-    if(key == 13)
-    {
-        road.push(Point.lerp(road[1],road[0],2))
-        road.push(road[0])
-        isClosed = true
-        
-        for(let i = 0; i < road.length-3 ; i += 3)
-        {
-            calcCubicCurvePoints(road[i],road[i+1],road[i+2],road[i+3])
-        }
-    }
-    if(key == 16)
-    {
-        console.log(mouseX,mouseY)
-    }
+	current = -1
+
+	if(key == 13)
+	{
+		road.push(Point.lerp(road[1],road[0],2))
+		road.push(road[0])
+		isClosed = true
+
+		for(let i = 0; i < road.length-3 ; i += 3)
+		{
+			calcCubicCurvePoints(road[i],road[i+1],road[i+2],road[i+3])
+		}
+	}
+	if(key == 16)
+	{
+		console.log(mouseX,mouseY)
+	}
 }
 
 function mousedown()
 {
-    if(!isClosed)
-    {
-        road.push(new Vector2(mouseX,mouseY))
-        if((road.length-1) % 3 == 0 )
-        {
-            if(road.length >= 2)
-                road.push(new Vector2(
-                road[road.length - 1].x - (road[road.length - 2].x - road[road.length - 1].x),
-                road[road.length - 1].y - (road[road.length - 2].y - road[road.length - 1].y)
-            ))
-        }
-    }
+	if(!isClosed)
+	{
+		road.push(new Vector2(mouseX,mouseY))
+		if((road.length-1) % 3 == 0 )
+		{
+			if(road.length >= 2)
+				road.push(new Vector2(
+					road[road.length - 1].x - (road[road.length - 2].x - road[road.length - 1].x),
+					road[road.length - 1].y - (road[road.length - 2].y - road[road.length - 1].y)
+				))
+		}
+	}
 }
 
 function mouseup()
 {
-    
+
 }
